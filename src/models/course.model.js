@@ -1,5 +1,4 @@
-import mongoose from "mongoose";
-const { Schema } = mongoose;
+import { model, Schema } from "mongoose";
 
 const LinkSchema = new Schema({
     name: String,
@@ -9,7 +8,7 @@ const LinkSchema = new Schema({
 const SubmissionSchema = new Schema({
     filename: String,
     originalName: String,
-    uploadedAt: { type: Date, default: Date.now },
+    uploadedAt: { type: Date, default: Date.now() },
 });
 
 const LessonSchema = new Schema({
@@ -26,7 +25,7 @@ const CourseSchema = new Schema(
         image: String,
         startDate: Date,
         // reference to a Group document instead of embedded object
-        group: { type: mongoose.Schema.Types.ObjectId, ref: "Group" },
+        group: { type: Schema.Types.ObjectId, ref: "Group" },
         links: [LinkSchema],
         files: [String],
         lessons: [LessonSchema],
@@ -35,4 +34,4 @@ const CourseSchema = new Schema(
     { timestamps: true }
 );
 
-export default mongoose.model("Course", CourseSchema);
+export default model("Course", CourseSchema);

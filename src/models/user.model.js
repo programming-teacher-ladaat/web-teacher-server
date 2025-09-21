@@ -1,6 +1,4 @@
-import mongoose from "mongoose";
-
-const { Schema } = mongoose;
+import { model, Schema } from "mongoose";
 
 const UserSchema = new Schema(
     {
@@ -9,10 +7,10 @@ const UserSchema = new Schema(
         password: String,
         role: String,
         // store references to Course documents
-        courses: { type: [mongoose.Schema.Types.ObjectId], ref: "Course" },
+        courses: { type: [Schema.Types.ObjectId], ref: "Course" },
     },
     { timestamps: true }
 );
 
 // Export only the model (default export)
-export default mongoose.model("User", UserSchema);
+export default model("User", UserSchema);
