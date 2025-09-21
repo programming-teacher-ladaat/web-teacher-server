@@ -2,7 +2,8 @@ import Group from "../models/group.model.js";
 
 export async function createGroup(req, res, next) {
     try {
-        const group = await Group.create(req.body);
+        const group = new Group(req.body);
+        await group.save();
         res.status(201).json(group);
     } catch (err) {
         next(err);

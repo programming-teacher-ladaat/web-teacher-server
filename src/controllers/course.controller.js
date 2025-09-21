@@ -2,7 +2,8 @@ import Course from "../models/course.model.js";
 
 export async function createCourse(req, res, next) {
     try {
-        const course = await Course.create(req.body);
+        const course = new Course(req.body);
+        await course.save();
         res.status(201).json(course);
     } catch (err) {
         next(err);
