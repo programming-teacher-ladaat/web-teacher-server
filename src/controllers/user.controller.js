@@ -1,4 +1,6 @@
 import User from "../models/user.model.js";
+import jwt from "jsonwebtoken";
+import { JWT_SECRET } from "../config/env.js";
 
 export async function createUser(req, res, next) {
     try {
@@ -65,6 +67,39 @@ export async function deleteUser(req, res, next) {
     try {
         await User.findByIdAndDelete(req.params.id);
         res.status(204).end();
+    } catch (err) {
+        next(err);
+    }
+}
+
+// login handler: accepts { email, password } and returns a JWT with { role, id }
+export async function login(req, res, next) {
+    try {
+        const { email, password } = req.body;
+        if (!email || !password) {
+            const err = new Error("Email and password are required");
+            err.status = 400;
+            throw err;
+        }
+
+        const user = await User.findOne({ email });
+        if (!user) {
+            const err = new Error("Invalid credentials");
+            err.status = 401;
+            throw err;
+        }
+
+        const match = await user.comparePassword(password);
+        if (!match) {
+            const err = new Error("Invalid credentials");
+            err.status = 401;
+            throw err;
+        }
+
+        const payload = { role: user.role, id: user._id.toString() };
+        const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '7d' });
+
+        res.json({ token });
     } catch (err) {
         next(err);
     }
