@@ -76,11 +76,6 @@ export async function deleteUser(req, res, next) {
 export async function login(req, res, next) {
     try {
         const { email, password } = req.body;
-        if (!email || !password) {
-            const err = new Error("Email and password are required");
-            err.status = 400;
-            throw err;
-        }
 
         const user = await User.findOne({ email });
         if (!user) {
