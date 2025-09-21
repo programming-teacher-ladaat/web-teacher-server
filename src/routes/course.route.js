@@ -9,7 +9,7 @@ const router = express.Router();
 // Protect all course routes with auth
 router.use(auth);
 
-router.post("/", authAdmin, cloudinaryUpload('files', 10), validate(courseSchema), createCourse);
+router.post("/", authAdmin, cloudinaryUpload('files', 10, [], 'courses_files'), validate(courseSchema), createCourse);
 router.get("/", getCourses);
 router.get("/:id", getCourse);
 router.put("/:id", authAdmin, validate(courseSchema), updateCourse);
