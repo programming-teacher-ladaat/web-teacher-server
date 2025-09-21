@@ -22,15 +22,15 @@ const LessonSchema = new Schema({
 
 const CourseSchema = new Schema(
     {
-    name: String,
-    image: String,
-    startDate: Date,
-    // reference to a Group document instead of embedded object
-    group: { type: mongoose.Schema.Types.ObjectId, ref: "Group" },
-    links: [LinkSchema],
-    files: [String],
-    lessons: [LessonSchema],
-    hidden: Boolean,
+        name: String,
+        image: String,
+        startDate: Date,
+        // reference to a Group document instead of embedded object
+        group: { type: mongoose.Schema.Types.ObjectId, ref: "Group" },
+        links: [LinkSchema],
+        files: [String],
+        lessons: [LessonSchema],
+        hidden: Boolean,
     },
     { timestamps: true }
 );
