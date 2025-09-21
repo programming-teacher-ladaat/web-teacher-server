@@ -2,6 +2,10 @@ import Course from "../models/course.model.js";
 
 export async function createCourse(req, res, next) {
     try {
+        // If files were uploaded, add their URLs to the files field
+        if (req.filesUrls && Array.isArray(req.filesUrls) && req.filesUrls.length > 0) {
+            req.body.files = req.filesUrls;
+        }
         const course = new Course(req.body);
         await course.save();
         res.status(201).json(course);
