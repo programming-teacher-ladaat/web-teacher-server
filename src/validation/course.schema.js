@@ -14,9 +14,9 @@ export const submissionSchema = Joi.object({
 export const lessonSchema = Joi.object({
     topic: Joi.string().optional(),
     date: Joi.date().optional(),
-    flow: Joi.array().items(Joi.string()).optional(),
-    submissions: Joi.array().items(submissionSchema).optional(),
-    hidden: Joi.boolean().optional(),
+    flow: Joi.array().items(Joi.string()).default([]),
+    submissions: Joi.array().items(submissionSchema).default([]),
+    hidden: Joi.boolean().default(false),
 });
 
 export const courseSchema = Joi.object({
@@ -24,8 +24,8 @@ export const courseSchema = Joi.object({
     image: Joi.string().optional(),
     startDate: Joi.date().required(),
     group: Joi.string().length(24).hex().optional(),
-    links: Joi.array().items(linkSchema).optional(),
-    files: Joi.array().items(Joi.string()).optional(),
-    lessons: Joi.array().items(lessonSchema).optional(),
-    hidden: Joi.boolean().optional(),
+    links: Joi.array().items(linkSchema).default([]),
+    files: Joi.array().items(Joi.string()).default([]),
+    lessons: Joi.array().items(lessonSchema).default([]),
+    hidden: Joi.boolean().default(true),
 });
