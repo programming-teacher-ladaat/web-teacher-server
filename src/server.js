@@ -1,3 +1,4 @@
+/* eslint-env node */
 import app from "./app.js";
 import connectDB from "./config/db.config.js";
 import { PORT, MONGO_URI } from "./config/env.js";

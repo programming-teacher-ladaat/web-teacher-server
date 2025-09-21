@@ -1,3 +1,4 @@
+/* eslint-env node */
 import dotenv from "dotenv";
 
 // Load .env into process.env

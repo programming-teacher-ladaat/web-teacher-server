@@ -1,3 +1,4 @@
+/* eslint-env node */
 import mongoose from "mongoose";
 import { MONGO_URI } from "./env.js";
 

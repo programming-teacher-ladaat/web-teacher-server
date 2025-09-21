@@ -7,7 +7,8 @@
     "scripts": {
         "start": "node src/server.js",
         "dev": "node --watch --experimental-specifier-resolution=node src/server.js",
-        "test": "jest --runInBand --experimental-vm-modules"
+        "test": "jest --runInBand --experimental-vm-modules",
+        "docs:update-swagger": "echo \"Update src/config/swagger.json: regenerate from annotations or update manually. Consider using swagger-jsdoc or openapi-generator to automate.\""
     },
     "keywords": [],
     "author": "",
@@ -23,6 +24,7 @@
         "supertest": "^6.0.0"
     },
     "dependencies": {
+        "swagger-ui-express": "^4.6.3",
         "bcrypt": "^5.1.0",
         "cors": "^2.8.5",
         "dotenv": "^16.0.0",
