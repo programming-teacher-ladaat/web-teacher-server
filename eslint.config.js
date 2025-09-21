@@ -1,5 +1,7 @@
+import { defineConfig } from "eslint/config";
+
 // Basic ESLint config for ESM Node.js project
-export default [
+export default defineConfig([
     {
         files: ["**/*.js"],
         languageOptions: {
@@ -12,6 +14,7 @@ export default [
             "no-unused-vars": "warn",
             "no-undef": "error"
         },
+        // use ignorePatterns for flat config
         ignores: ["node_modules/**", "dist/**"]
     }
-];
+]);
