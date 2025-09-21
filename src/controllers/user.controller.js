@@ -1,4 +1,4 @@
-import User from '../models/user.model.js';
+import User from "../models/user.model.js";
 
 export async function createUser(req, res, next) {
     try {
@@ -20,9 +20,9 @@ export async function getUsers(req, res, next) {
 
 export async function getUser(req, res, next) {
     try {
-        const user = await User.findById(req.params.id).populate('courses');
+        const user = await User.findById(req.params.id).populate("courses");
         if (!user) {
-            const err = new Error('Not Found');
+            const err = new Error("Not Found");
             err.status = 404;
             throw err;
         }
@@ -36,7 +36,7 @@ export async function updateUser(req, res, next) {
     try {
         const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!user) {
-            const err = new Error('Not Found');
+            const err = new Error("Not Found");
             err.status = 404;
             throw err;
         }

@@ -1,4 +1,4 @@
-import Group from '../models/group.model.js';
+import Group from "../models/group.model.js";
 
 export async function createGroup(req, res, next) {
     try {
@@ -11,7 +11,7 @@ export async function createGroup(req, res, next) {
 
 export async function getGroups(req, res, next) {
     try {
-        const groups = await Group.find().populate('students').populate('courses');
+        const groups = await Group.find().populate("students").populate("courses");
         res.json(groups);
     } catch (err) {
         next(err);
@@ -20,9 +20,9 @@ export async function getGroups(req, res, next) {
 
 export async function getGroup(req, res, next) {
     try {
-        const group = await Group.findById(req.params.id).populate('students').populate('courses');
+        const group = await Group.findById(req.params.id).populate("students").populate("courses");
         if (!group) {
-            const err = new Error('Not Found');
+            const err = new Error("Not Found");
             err.status = 404;
             throw err;
         }
@@ -36,7 +36,7 @@ export async function updateGroup(req, res, next) {
     try {
         const group = await Group.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!group) {
-            const err = new Error('Not Found');
+            const err = new Error("Not Found");
             err.status = 404;
             throw err;
         }

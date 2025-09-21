@@ -1,4 +1,4 @@
-import Course from '../models/course.model.js';
+import Course from "../models/course.model.js";
 
 export async function createCourse(req, res, next) {
     try {
@@ -11,7 +11,7 @@ export async function createCourse(req, res, next) {
 
 export async function getCourses(req, res, next) {
     try {
-        const courses = await Course.find().populate('group');
+        const courses = await Course.find().populate("group");
         res.json(courses);
     } catch (err) {
         next(err);
@@ -20,9 +20,9 @@ export async function getCourses(req, res, next) {
 
 export async function getCourse(req, res, next) {
     try {
-        const course = await Course.findById(req.params.id).populate('group');
+        const course = await Course.findById(req.params.id).populate("group");
         if (!course) {
-            const err = new Error('Not Found');
+            const err = new Error("Not Found");
             err.status = 404;
             throw err;
         }
@@ -36,7 +36,7 @@ export async function updateCourse(req, res, next) {
     try {
         const course = await Course.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!course) {
-            const err = new Error('Not Found');
+            const err = new Error("Not Found");
             err.status = 404;
             throw err;
         }

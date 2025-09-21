@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const LinkSchema = new Schema({
@@ -26,7 +26,7 @@ const CourseSchema = new Schema(
         image: { type: String },
         startDate: { type: Date, required: true },
         // reference to a Group document instead of embedded object
-        group: { type: mongoose.Schema.Types.ObjectId, ref: 'Group' },
+        group: { type: mongoose.Schema.Types.ObjectId, ref: "Group" },
         links: { type: [LinkSchema], default: [] },
         files: { type: [String], default: [] },
         lessons: { type: [LessonSchema], default: [] },
@@ -35,4 +35,4 @@ const CourseSchema = new Schema(
     { timestamps: true }
 );
 
-export default mongoose.model('Course', CourseSchema);
+export default mongoose.model("Course", CourseSchema);

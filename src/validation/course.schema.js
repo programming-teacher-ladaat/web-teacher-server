@@ -1,4 +1,4 @@
-import Joi from 'joi';
+import Joi from "joi";
 
 export const linkSchema = Joi.object({
     name: Joi.string().optional(),
