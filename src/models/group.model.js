@@ -7,7 +7,6 @@ const GroupSchema = new Schema(
         courses: { type: [Schema.Types.ObjectId], ref: "Course" },
         // references to User documents (students)
         students: { type: [Schema.Types.ObjectId], ref: "User" },
-        createdDate: Date,
     },
     { timestamps: true }
 );
