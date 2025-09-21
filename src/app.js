@@ -15,9 +15,9 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 
-app.use("/api/users", userRouter);
-app.use("/api/courses", courseRouter);
-app.use("/api/groups", groupRouter);
+app.use("/users", userRouter);
+app.use("/courses", courseRouter);
+app.use("/groups", groupRouter);
 
 // swagger description endpoint (minimal static OpenAPI JSON)
 // Only expose the swagger JSON during development or test to avoid leaking in production
