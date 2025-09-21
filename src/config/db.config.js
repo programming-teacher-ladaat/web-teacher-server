@@ -1,12 +1,13 @@
 import mongoose from "mongoose";
+import { MONGO_URI } from "./env.js";
 
 /**
- * Connect to MongoDB.
- * @param {string} mongoUri - MongoDB connection string
+ * Connect to MongoDB using the centralized env values.
  */
 async function connectDB() {
     try {
-        const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/web-teacher";
+        // silence Mongoose deprecation about strictQuery changing in v7
+        mongoose.set("strictQuery", false);
         await mongoose.connect(MONGO_URI);
         console.log("MongoDB connected");
     } catch (err) {
