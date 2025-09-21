@@ -34,6 +34,20 @@ export async function getUser(req, res, next) {
 
 export async function updateUser(req, res, next) {
     try {
+        // If password is being updated, use document.save() so pre-save hooks run
+        if (req.body && Object.prototype.hasOwnProperty.call(req.body, "password")) {
+            const user = await User.findById(req.params.id);
+            if (!user) {
+                const err = new Error("Not Found");
+                err.status = 404;
+                throw err;
+            }
+            // assign provided fields to the user document
+            Object.assign(user, req.body);
+            const saved = await user.save();
+            return res.json(saved);
+        }
+
         const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!user) {
             const err = new Error("Not Found");
