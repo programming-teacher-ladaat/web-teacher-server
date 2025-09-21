@@ -7,6 +7,7 @@ import groupRouter from "./routes/group.route.js";
 import swaggerRouter from "./routes/swagger.route.js";
 import { NODE_ENV } from "./config/env.js";
 import createSwaggerMiddleware from "./middleware/swagger.middleware.js";
+import { notFound, errorHandler } from './middleware/errors.middleware.js';
 
 const app = express();
 
@@ -31,5 +32,11 @@ if (NODE_ENV !== "production") {
 
 // basic health
 app.get("/health", (req, res) => res.json({ ok: true }));
+
+// 404 handler
+app.use(notFound);
+
+// error handler (must be the last middleware)
+app.use(errorHandler);
 
 export default app;
