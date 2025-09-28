@@ -5,7 +5,7 @@ import cloudinary from '../config/cloudinary.config.js';
 const upload = multer({ storage: multer.memoryStorage() });
 
 // Middleware: upload files to Cloudinary and attach URLs to req.filesUrls
-export function cloudinaryUpload(fieldName = 'files', maxCount = 10, accept = [], folder) {
+export function cloudinaryUpload(fieldName = 'files', maxCount = 10, folder = 'courses', accept) {
     return [
         upload.array(fieldName, maxCount),
         async (req, res, next) => {
